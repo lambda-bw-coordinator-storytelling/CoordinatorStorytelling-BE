@@ -1,2 +1,2 @@
 # CoordinatorStorytelling-BE
-Coordinator Storytelling Backend
+Backend Repo
