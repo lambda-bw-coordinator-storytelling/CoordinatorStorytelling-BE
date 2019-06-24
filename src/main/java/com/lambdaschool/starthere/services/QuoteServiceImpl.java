@@ -1,7 +1,7 @@
 package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.exceptions.ResourceNotFoundException;
-import com.lambdaschool.starthere.models.Quote;
+import com.lambdaschool.starthere.models.Story;
 import com.lambdaschool.starthere.repository.QuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,15 +19,15 @@ public class QuoteServiceImpl implements QuoteService
     private QuoteRepository quoterepos;
 
     @Override
-    public List<Quote> findAll()
+    public List<Story> findAll()
     {
-        List<Quote> list = new ArrayList<>();
+        List<Story> list = new ArrayList<>();
         quoterepos.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
-    public Quote findQuoteById(long id)
+    public Story findQuoteById(long id)
     {
         return quoterepos.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
     }
@@ -53,15 +53,15 @@ public class QuoteServiceImpl implements QuoteService
 
     @Transactional
     @Override
-    public Quote save(Quote quote)
+    public Story save(Story story)
     {
-        return quoterepos.save(quote);
+        return quoterepos.save(story);
     }
 
     @Override
-    public List<Quote> findByUserName(String username)
+    public List<Story> findByUserName(String username)
     {
-        List<Quote> list = new ArrayList<>();
+        List<Story> list = new ArrayList<>();
         quoterepos.findAll().iterator().forEachRemaining(list::add);
 
         list.removeIf(q -> !q.getUser().getUsername().equalsIgnoreCase(username));

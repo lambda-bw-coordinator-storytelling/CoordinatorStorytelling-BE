@@ -1,18 +1,18 @@
 package com.lambdaschool.starthere.services;
 
-import com.lambdaschool.starthere.models.Quote;
+import com.lambdaschool.starthere.models.Story;
 
 import java.util.List;
 
 public interface QuoteService
 {
-    List<Quote> findAll();
+    List<Story> findAll();
 
-    Quote findQuoteById(long id);
+    Story findQuoteById(long id);
 
-    List<Quote> findByUserName(String username);
+    List<Story> findByUserName(String username);
 
     void delete(long id);
 
-    Quote save(Quote quote);
+    Story save(Story story);
 }

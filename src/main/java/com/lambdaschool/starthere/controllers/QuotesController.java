@@ -1,6 +1,6 @@
 package com.lambdaschool.starthere.controllers;
 
-import com.lambdaschool.starthere.models.Quote;
+import com.lambdaschool.starthere.models.Story;
 import com.lambdaschool.starthere.services.QuoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +32,8 @@ public class QuotesController
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        List<Quote> allQuotes = quoteService.findAll();
-        return new ResponseEntity<>(allQuotes, HttpStatus.OK);
+        List<Story> allStories = quoteService.findAll();
+        return new ResponseEntity<>(allStories, HttpStatus.OK);
     }
 
 
@@ -45,7 +45,7 @@ public class QuotesController
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        Quote q = quoteService.findQuoteById(quoteId);
+        Story q = quoteService.findQuoteById(quoteId);
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
 
@@ -58,23 +58,23 @@ public class QuotesController
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        List<Quote> theQuotes = quoteService.findByUserName(userName);
-        return new ResponseEntity<>(theQuotes, HttpStatus.OK);
+        List<Story> theStories = quoteService.findByUserName(userName);
+        return new ResponseEntity<>(theStories, HttpStatus.OK);
     }
 
 
     @PostMapping(value = "/quote")
     public ResponseEntity<?> addNewQuote(HttpServletRequest request, @Valid
     @RequestBody
-            Quote newQuote) throws URISyntaxException
+            Story newStory) throws URISyntaxException
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        newQuote = quoteService.save(newQuote);
+        newStory = quoteService.save(newStory);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newQuoteURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{quoteid}").buildAndExpand(newQuote.getQuotesid()).toUri();
+        URI newQuoteURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{quoteid}").buildAndExpand(newStory.getStoriesid()).toUri();
         responseHeaders.setLocation(newQuoteURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);

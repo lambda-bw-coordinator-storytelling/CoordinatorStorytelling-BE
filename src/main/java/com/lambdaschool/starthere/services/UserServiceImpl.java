@@ -1,7 +1,7 @@
 package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.exceptions.ResourceNotFoundException;
-import com.lambdaschool.starthere.models.Quote;
+import com.lambdaschool.starthere.models.Story;
 import com.lambdaschool.starthere.models.User;
 import com.lambdaschool.starthere.models.UserRoles;
 import com.lambdaschool.starthere.repository.RoleRepository;
@@ -79,9 +79,9 @@ public class UserServiceImpl implements UserDetailsService, UserService
         }
         newUser.setUserRoles(newRoles);
 
-        for (Quote q : user.getQuotes())
+        for (Story q : user.getStories())
         {
-            newUser.getQuotes().add(new Quote(q.getQuote(), newUser));
+            newUser.getStories().add(new Story(q.getTitle(), newUser));
         }
 
         return userrepos.save(newUser);
@@ -123,11 +123,11 @@ public class UserServiceImpl implements UserDetailsService, UserService
                     }
                 }
 
-                if (user.getQuotes().size() > 0)
+                if (user.getStories().size() > 0)
                 {
-                    for (Quote q : user.getQuotes())
+                    for (Story q : user.getStories())
                     {
-                        currentUser.getQuotes().add(new Quote(q.getQuote(), currentUser));
+                        currentUser.getStories().add(new Story(q.getTitle(), currentUser));
                     }
                 }
 
