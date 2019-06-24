@@ -71,6 +71,13 @@ public class UserServiceImpl implements UserDetailsService, UserService
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPasswordNoEncrypt(user.getPassword());
+        newUser.setCountry(user.getCountry());
+        newUser.setFirstname(user.getFirstname());
+        newUser.setLastname(user.getLastname());
+        newUser.setEmail(user.getEmail());
+        newUser.setTitle(user.getTitle());
+
+
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         for (UserRoles ur : user.getUserRoles())
@@ -109,6 +116,21 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 if (user.getPassword() != null)
                 {
                     currentUser.setPasswordNoEncrypt(user.getPassword());
+                }
+                if (user.getFirstname() !=null){
+                    currentUser.setFirstname(user.getFirstname());
+                }
+                if (user.getLastname() !=null){
+                    currentUser.setLastname(user.getLastname());
+                }
+                if (user.getEmail() !=null){
+                    currentUser.setEmail(user.getEmail());
+                }
+                if (user.getTitle() !=null){
+                    currentUser.setTitle(user.getTitle());
+                }
+                if (user.getCountry() !=null){
+                    currentUser.setCountry(user.getCountry());
                 }
 
                 if (user.getUserRoles().size() > 0)
