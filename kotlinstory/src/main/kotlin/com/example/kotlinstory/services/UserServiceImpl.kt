@@ -1,6 +1,6 @@
 package com.example.kotlinstory.services
 
-import com.example.kotlinstory.models.Quote
+import com.example.kotlinstory.models.Story
 import com.example.kotlinstory.models.User
 import com.example.kotlinstory.models.UserRoles
 import com.example.kotlinstory.repository.RoleRepository
@@ -67,9 +67,9 @@ open class UserServiceImpl : UserDetailsService, UserService {
         }
         newUser.userRoles = newRoles
 
-//        for (q in user.quotes) {
-//            (newUser.quotes as MutableList).add(Quote(q.quote!!, newUser))
-//        }
+        for (q in user.stories) {
+            newUser.stories.add(q)
+        }
 
         return userrepos!!.save(newUser)
     }
@@ -100,9 +100,9 @@ open class UserServiceImpl : UserDetailsService, UserService {
                     }
                 }
 
-                if (user.quotes.isNotEmpty()) {
-                    for (q in user.quotes) {
-                        (currentUser.quotes as MutableList).add(q)
+                if (user.stories.isNotEmpty()) {
+                    for (q in user.stories) {
+                        (currentUser.stories as MutableList).add(q)
                     }
                 }
 

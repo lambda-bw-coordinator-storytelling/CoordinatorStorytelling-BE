@@ -1,7 +1,7 @@
 package com.example.kotlinstory.services
 
 import com.example.kotlinstory.exceptions.ResourceNotFoundException
-import com.example.kotlinstory.models.Quote
+import com.example.kotlinstory.models.Story
 import com.example.kotlinstory.repository.StoryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.context.SecurityContextHolder
@@ -11,28 +11,27 @@ import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityNotFoundException
 import java.util.ArrayList
 import java.util.function.Consumer
-//todo may not use at all
-@Service(value = "quoteService")
+@Service(value = "storyService")
 open class StoryServiceImpl : StoryService {
     @Autowired
-    private val quoterepos: StoryRepository? = null
+    private val storyrepo: StoryRepository? = null
 
-    override fun findAll(): List<Quote> {
-        val list = ArrayList<Quote>()
-        quoterepos!!.findAll().iterator().forEachRemaining(Consumer<Quote> { list.add(it) })
+    override fun findAll(): List<Story> {
+        val list = ArrayList<Story>()
+        storyrepo!!.findAll().iterator().forEachRemaining(Consumer<Story> { list.add(it) })
         return list
     }
 
-    override fun findQuoteById(id: Long): Quote {
-        return quoterepos!!.findById(id)
+    override fun findStoryById(id: Long): Story {
+        return storyrepo!!.findById(id)
                 .orElseThrow { EntityNotFoundException(id.toString()) }
     }
 
     override fun delete(id: Long) {
-        if (quoterepos!!.findById(id).isPresent) {
+        if (storyrepo!!.findById(id).isPresent) {
             val authentication = SecurityContextHolder.getContext().authentication
-            if (quoterepos.findById(id).get().user!!.username!!.equals(authentication.name, ignoreCase = true)) {
-                quoterepos.deleteById(id)
+            if (storyrepo.findById(id).get().user!!.username!!.equals(authentication.name, ignoreCase = true)) {
+                storyrepo.deleteById(id)
             } else {
                 throw EntityNotFoundException(id.toString() + " " + authentication.name)
             }
@@ -42,24 +41,24 @@ open class StoryServiceImpl : StoryService {
     }
 
     @Transactional
-    override fun save(quote: Quote): Quote {
-        return quoterepos!!.save(quote)
+    override fun save(quote: Story): Story {
+        return storyrepo!!.save(quote)
     }
 
-    override fun findByUserName(username: String): List<Quote> {
-        val list = ArrayList<Quote>()
-        quoterepos!!.findAll().iterator().forEachRemaining(Consumer<Quote> { list.add(it) })
+    override fun findByUserName(username: String): List<Story> {
+        val list = ArrayList<Story>()
+        storyrepo!!.findAll().iterator().forEachRemaining(Consumer<Story> { list.add(it) })
 
         list.removeIf { q -> !q.user!!.username!!.equals(username, ignoreCase = true) }
         return list
     }
 
-    override fun update(id: Long, book: Quote) {
-        val currentBook = quoterepos!!.findById(id)
+    override fun update(id: Long, book: Story) {
+        val currentBook = storyrepo!!.findById(id)
                 .orElseThrow { ResourceNotFoundException("Cannot find book id$id") }
 
-        if (book.quote != null) {
-            currentBook.quote = book.quote
+        if (book.title != null) {
+            currentBook.title = book.title
         }
 
         if (book.country != null) {
@@ -75,6 +74,6 @@ open class StoryServiceImpl : StoryService {
         }
 
 
-        quoterepos!!.save(currentBook)
+        storyrepo!!.save(currentBook)
     }
 }

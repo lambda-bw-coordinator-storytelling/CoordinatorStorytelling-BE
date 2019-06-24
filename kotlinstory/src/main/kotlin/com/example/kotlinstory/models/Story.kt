@@ -29,7 +29,7 @@ class Story : Auditable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties("quotes", "hibernateLazyInitializer")
+    @JsonIgnoreProperties("stories", "hibernateLazyInitializer")
     var user: User? = null
 
     constructor() {}

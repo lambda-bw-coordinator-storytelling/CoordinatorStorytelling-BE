@@ -6,6 +6,7 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class KotlinstoryApplication
 
-fun main(args: Array<String>) {
-    runApplication<KotlinstoryApplication>(*args)
-}
+    fun main(args: Array<String>) {
+        runApplication<KotlinstoryApplication>(*args)
+    }
+

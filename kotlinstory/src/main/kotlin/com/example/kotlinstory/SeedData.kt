@@ -1,6 +1,6 @@
 package com.example.kotlinstory
 
-import com.example.kotlinstory.models.Quote
+import com.example.kotlinstory.models.Story
 import com.example.kotlinstory.models.Role
 import com.example.kotlinstory.models.User
 import com.example.kotlinstory.models.UserRoles
@@ -40,8 +40,8 @@ open class SeedData : CommandLineRunner {
         val u1 = User("admin", "password", admins)
 
 //        constructor(quote: String,country: String, description: String, content:String, date:String,  user: User)
-        (u1.quotes as MutableList).add(Quote("fakequote1","Bolivia","fakequoteDescription1" ,"A creative man is motivated by the desire to achieve, not by the desire to beat others","january 1 2001", u1))
-        (u1.quotes as MutableList).add(Quote("fakequote2","US of A","fakequoteDescription2" ,"2 creative men is motivated by the desire to achieve, not by the desire to beat others","january 1 2001", u1))
+        (u1.stories as MutableList).add(Story("fakequote1","Bolivia","fakequoteDescription1" ,"A creative man is motivated by the desire to achieve, not by the desire to beat others","january 1 2001", u1))
+        (u1.stories as MutableList).add(Story("fakequote2","US of A","fakequoteDescription2" ,"2 creative men is motivated by the desire to achieve, not by the desire to beat others","january 1 2001", u1))
         userService!!.save(u1)
 
         // data, user
@@ -55,9 +55,9 @@ open class SeedData : CommandLineRunner {
         val users = ArrayList<UserRoles>()
         users.add(UserRoles(User(), userRole))
         val u3 = User("user", "password", users)
-        (u3.quotes as MutableList).add(Quote("fake quote title", "Argentina", "fake description","Live long and prosper","fake date", u3))
-        (u3.quotes as MutableList).add(Quote("fake quote title", "Argentina", "fake description","The enemy of my enemy is the enemy I kill last","fake date", u3))
-        (u3.quotes as MutableList).add(Quote("fake quote title", "Argentina", "fake description","Beam me up","fake date", u3))
+//        (u3.stories as MutableList).add(Story("fake quote title", "Argentina", "fake description","Live long and prosper","fake date", u3))
+//        (u3.stories as MutableList).add(Story("fake quote title", "Argentina", "fake description","The enemy of my enemy is the enemy I kill last","fake date", u3))
+//        (u3.stories as MutableList).add(Story("fake quote title", "Argentina", "fake description","Beam me up","fake date", u3))
         userService!!.save(u3)
 
 

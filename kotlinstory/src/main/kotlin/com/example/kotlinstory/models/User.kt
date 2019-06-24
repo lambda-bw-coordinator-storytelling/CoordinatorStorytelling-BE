@@ -31,7 +31,7 @@ class User : Auditable {
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties("user")
-    var quotes: List<Quote> = mutableListOf()
+    var stories: MutableList<Story> = mutableListOf()
 
     val authority: List<SimpleGrantedAuthority>
         get() {
