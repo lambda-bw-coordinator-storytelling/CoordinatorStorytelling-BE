@@ -1,2 +1,0 @@
-# CoordinatorStorytelling-BE
-Backend Repo

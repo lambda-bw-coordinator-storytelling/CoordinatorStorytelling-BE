@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/kotlinstory.iml" filepath="$PROJECT_DIR$/kotlinstory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authenticatedusers.iml" filepath="$PROJECT_DIR$/authenticatedusers.iml" />
     </modules>
   </component>
 </project>
