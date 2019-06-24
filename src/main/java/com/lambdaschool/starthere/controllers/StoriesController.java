@@ -35,7 +35,8 @@ public class StoriesController
         List<Story> allStories = storyService.findAll();
         return new ResponseEntity<>(allStories, HttpStatus.OK);
     }
-
+//Todo: add a Put Mapping
+    //Todo: figure out JSON format for putting/posting
 
     @GetMapping(value = "/{storyId}",
                 produces = {"application/json"})
