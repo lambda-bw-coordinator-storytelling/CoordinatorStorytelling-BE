@@ -41,8 +41,10 @@ public class SeedData implements CommandLineRunner
         admins.add(new UserRoles(new User(), r2));
         admins.add(new UserRoles(new User(), r3));
         User u1 = new User("admin", "password", admins);
-        u1.getStories().add(new Story("A creative man is motivated by the desire to achieve, not by the desire to beat others", u1));
-        u1.getStories().add(new Story("The question isn't who is going to let me; it's who is going to stop me.", u1));
+//            public Story(String title, String country, String description, String content, String date, User user) {
+
+        u1.getStories().add(new Story("fake title", "Bolivia", "fakeish description","A creative man is motivated by the desire to achieve, not by the desire to beat others", "fake date",u1));
+        u1.getStories().add(new Story("fake title", "Bolivia", "fakeish description","The question isn't who is going to let me; it's who is going to stop me.", "fake date",u1));
         userService.save(u1);
 
         // data, user
@@ -56,9 +58,9 @@ public class SeedData implements CommandLineRunner
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
         User u3 = new User("barnbarn", "ILuvM4th!", users);
-        u3.getStories().add(new Story("Live long and prosper", u3));
-        u3.getStories().add(new Story("The enemy of my enemy is the enemy I kill last", u3));
-        u3.getStories().add(new Story("Beam me up", u3));
+        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Live long and prosper", "fake date",u3));
+        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","The enemy of my enemy is the enemy I kill last", "fake date",u3));
+        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Beam me up", "fake date",u3));
         userService.save(u3);
 
         users = new ArrayList<>();

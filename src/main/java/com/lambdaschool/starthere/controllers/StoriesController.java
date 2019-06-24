@@ -1,7 +1,7 @@
 package com.lambdaschool.starthere.controllers;
 
 import com.lambdaschool.starthere.models.Story;
-import com.lambdaschool.starthere.services.QuoteService;
+import com.lambdaschool.starthere.services.StoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +18,34 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/quotes")
-public class QuotesController
+@RequestMapping("/stories")
+public class StoriesController
 {
     private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
 
     @Autowired
-    QuoteService quoteService;
+    StoryService storyService;
 
-    @GetMapping(value = "/quotes",
+    @GetMapping(value = "/all",
                 produces = {"application/json"})
     public ResponseEntity<?> listAllQuotes(HttpServletRequest request)
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        List<Story> allStories = quoteService.findAll();
+        List<Story> allStories = storyService.findAll();
         return new ResponseEntity<>(allStories, HttpStatus.OK);
     }
 
 
-    @GetMapping(value = "/quote/{quoteId}",
+    @GetMapping(value = "/{storyId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getQuote(HttpServletRequest request,
                                       @PathVariable
-                                              Long quoteId)
+                                              Long storyId)
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        Story q = quoteService.findQuoteById(quoteId);
+        Story q = storyService.findQuoteById(storyId);
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
 
@@ -58,19 +58,19 @@ public class QuotesController
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        List<Story> theStories = quoteService.findByUserName(userName);
+        List<Story> theStories = storyService.findByUserName(userName);
         return new ResponseEntity<>(theStories, HttpStatus.OK);
     }
 
 
-    @PostMapping(value = "/quote")
+    @PostMapping(value = "/story")
     public ResponseEntity<?> addNewQuote(HttpServletRequest request, @Valid
     @RequestBody
             Story newStory) throws URISyntaxException
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        newStory = quoteService.save(newStory);
+        newStory = storyService.save(newStory);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -81,14 +81,14 @@ public class QuotesController
     }
 
 
-    @DeleteMapping("/quote/{id}")
+    @DeleteMapping("/story/{id}")
     public ResponseEntity<?> deleteQuoteById(HttpServletRequest request,
                                              @PathVariable
                                                      long id)
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        quoteService.delete(id);
+        storyService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

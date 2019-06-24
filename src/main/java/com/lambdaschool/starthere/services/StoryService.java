@@ -4,7 +4,7 @@ import com.lambdaschool.starthere.models.Story;
 
 import java.util.List;
 
-public interface QuoteService
+public interface StoryService
 {
     List<Story> findAll();
 
