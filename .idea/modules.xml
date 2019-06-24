@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CoordinatorStorytelling-BE.iml" filepath="$PROJECT_DIR$/.idea/CoordinatorStorytelling-BE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlinstory.iml" filepath="$PROJECT_DIR$/kotlinstory.iml" />
     </modules>
   </component>
 </project>
