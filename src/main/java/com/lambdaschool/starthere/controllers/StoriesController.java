@@ -32,6 +32,7 @@ public class StoriesController
 
     @Autowired
     StoryService storyService;
+    @Autowired
     UserRepository userrepo;
 
 
@@ -96,7 +97,7 @@ public class StoriesController
         return new ResponseEntity<>(theStories, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/story")
     public ResponseEntity<?> addNewStory(HttpServletRequest request, @Valid
     @RequestBody
