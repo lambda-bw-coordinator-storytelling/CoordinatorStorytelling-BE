@@ -75,6 +75,7 @@ public class StoriesController
         Story q = storyService.findQuoteById(storyId);
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(value = "/mine", produces = {"application/json"})
     public ResponseEntity<?> getMyStories(HttpServletRequest request){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
