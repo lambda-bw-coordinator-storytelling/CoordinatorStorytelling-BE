@@ -46,8 +46,6 @@ public class StoriesController
         List<Story> allStories = storyService.findAll();
         return new ResponseEntity<>(allStories, HttpStatus.OK);
     }
-//Todo: add a Put Mapping
-    //Todo: figure out JSON format for putting/posting
 
 
     @GetMapping(value = "/random",
@@ -84,7 +82,7 @@ public class StoriesController
         return new ResponseEntity<>(theStories, HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/username/{userName}",
                 produces = {"application/json"})
     public ResponseEntity<?> findQuoteByUserName(HttpServletRequest request,
@@ -97,7 +95,7 @@ public class StoriesController
         return new ResponseEntity<>(theStories, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping(value = "/story")
     public ResponseEntity<?> addNewStory(HttpServletRequest request, @Valid
     @RequestBody
@@ -118,12 +116,14 @@ public class StoriesController
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
-    @PutMapping(value = "/story/update/{storyid}",produces = {"application/json"},consumes = {"application/json"})
-    public ResponseEntity<?> updatestory(@PathVariable long storyid, @RequestBody Story story){
+
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PutMapping(value = "/story/update/{storyid}",consumes = {"application/json"})
+    public ResponseEntity<?> updatestory(@RequestBody Story story,@PathVariable long storyid ){
         return new ResponseEntity<>(storyService.update(story, storyid), HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping("/story/{id}")
     public ResponseEntity<?> deleteQuoteById(HttpServletRequest request,
                                              @PathVariable

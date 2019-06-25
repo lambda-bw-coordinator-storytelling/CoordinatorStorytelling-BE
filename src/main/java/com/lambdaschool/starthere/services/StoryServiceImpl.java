@@ -90,8 +90,11 @@ public class StoryServiceImpl implements StoryService
         if (story.getUser() != null){
             currentStory.setUser(story.getUser());
         }
+        if(story.getUrl() != null){
+            currentStory.setUrl(story.getUrl());
+        }
 
-        return storyRepository.save(story);
+        return storyRepository.save(currentStory);
     }
 
 

@@ -33,6 +33,9 @@ public class Story extends Auditable
     @Column(nullable = false)
     private String date;
 
+    @Column()
+    private String url;
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -62,6 +65,16 @@ public class Story extends Auditable
         this.content = content;
         this.date = date;
 
+    }
+
+    public Story(String title, String country, String description, String content, String date, String url, User user) {
+        this.title = title;
+        this.country = country;
+        this.description = description;
+        this.content = content;
+        this.date = date;
+        this.url = url;
+        this.user = user;
     }
 
     public long getStoriesid() {
@@ -115,5 +128,13 @@ public class Story extends Auditable
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
