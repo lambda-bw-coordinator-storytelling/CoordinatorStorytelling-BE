@@ -55,6 +55,7 @@ public class Story extends Auditable
         this.description = description;
         this.content = content;
         this.date = date;
+        user = getUser();
     }
 
     public long getStoriesid() {

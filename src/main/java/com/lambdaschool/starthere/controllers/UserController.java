@@ -65,6 +65,7 @@ public class UserController
     }
 
 
+/*
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user",
                  consumes = {"application/json"},
@@ -85,6 +86,7 @@ public class UserController
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
+*/
 
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(HttpServletRequest request,

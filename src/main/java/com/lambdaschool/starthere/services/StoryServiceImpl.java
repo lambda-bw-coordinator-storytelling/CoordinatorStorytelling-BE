@@ -12,35 +12,35 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(value = "quoteService")
+@Service(value = "storyService")
 public class StoryServiceImpl implements StoryService
 {
     @Autowired
-    private StoryRepository quoterepos;
+    private StoryRepository storyRepository;
 
     @Override
     public List<Story> findAll()
     {
         List<Story> list = new ArrayList<>();
-        quoterepos.findAll().iterator().forEachRemaining(list::add);
+        storyRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
     public Story findQuoteById(long id)
     {
-        return quoterepos.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+        return storyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
     }
 
     @Override
     public void delete(long id)
     {
-        if (quoterepos.findById(id).isPresent())
+        if (storyRepository.findById(id).isPresent())
         {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (quoterepos.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
+            if (storyRepository.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
             {
-                quoterepos.deleteById(id);
+                storyRepository.deleteById(id);
             } else
             {
                 throw new ResourceNotFoundException(id + " " + authentication.getName());
@@ -55,14 +55,14 @@ public class StoryServiceImpl implements StoryService
     @Override
     public Story save(Story story)
     {
-        return quoterepos.save(story);
+        return storyRepository.save(story);
     }
 
     @Override
     public List<Story> findByUserName(String username)
     {
         List<Story> list = new ArrayList<>();
-        quoterepos.findAll().iterator().forEachRemaining(list::add);
+        storyRepository.findAll().iterator().forEachRemaining(list::add);
 
         list.removeIf(q -> !q.getUser().getUsername().equalsIgnoreCase(username));
         return list;
