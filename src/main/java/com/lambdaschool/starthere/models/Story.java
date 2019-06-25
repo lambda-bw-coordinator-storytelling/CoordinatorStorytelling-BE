@@ -27,7 +27,7 @@ public class Story extends Auditable
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "varchar(10000)")
     private String content;
 
     @Column(nullable = false)
