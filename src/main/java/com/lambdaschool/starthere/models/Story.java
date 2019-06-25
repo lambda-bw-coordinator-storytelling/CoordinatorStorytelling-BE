@@ -1,5 +1,6 @@
 package com.lambdaschool.starthere.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -33,7 +34,8 @@ public class Story extends Auditable
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid",
                 nullable = false)
-    @JsonIgnoreProperties({"quotes", "hibernateLazyInitializer"})
+//    @JsonIgnoreProperties({"stories", "hibernateLazyInitializer", "user", "userRoles", "authority"})
+    @JsonIgnore
     private User user;
 
     public Story()
