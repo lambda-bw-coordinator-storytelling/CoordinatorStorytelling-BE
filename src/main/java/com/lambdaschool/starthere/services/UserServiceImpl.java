@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
 //            public Story(String title, String country, String description, String content, String date, User user) {
 
         {
-            newUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(), newUser));
+            newUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),newUser));
         }
 
         return userrepos.save(newUser);
@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 {
                     for (Story q : user.getStories())
                     {
-                        currentUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(), currentUser));
+                        currentUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),currentUser));
                     }
                 }
 

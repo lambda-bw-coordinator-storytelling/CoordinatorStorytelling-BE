@@ -16,5 +16,7 @@ public interface StoryService
 
     Story save(Story story);
 
+    Story update(Story story, Long id);
+
 
 }

@@ -64,7 +64,35 @@ public class StoryServiceImpl implements StoryService
         List<Story> list = new ArrayList<>();
         storyRepository.findAll().iterator().forEachRemaining(list::add);
 
-        list.removeIf(q -> !q.getUser().getUsername().equalsIgnoreCase(username));
+        list.removeIf(q -> !q.getTitle().equalsIgnoreCase(username));
         return list;
     }
+    @Transactional
+    @Override
+    public Story update(Story story, Long id)
+    {
+        Story currentStory = storyRepository.findById(id).orElseThrow();
+        if (story.getTitle() != null){
+            currentStory.setTitle(story.getTitle());
+        }
+        if (story.getCountry() != null){
+            currentStory.setCountry(story.getCountry());
+        }
+        if (story.getDescription() != null){
+            currentStory.setDescription(story.getDescription());
+        }
+        if (story.getContent() != null){
+            currentStory.setContent(story.getContent());
+        }
+        if (story.getDate() != null){
+            currentStory.setDate(story.getDate());
+        }
+        if (story.getUser() != null){
+            currentStory.setUser(story.getUser());
+        }
+
+        return storyRepository.save(story);
+    }
+
+
 }

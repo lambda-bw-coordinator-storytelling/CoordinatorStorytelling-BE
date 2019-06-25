@@ -60,9 +60,9 @@ public class SeedData implements CommandLineRunner
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
         User u3 = new User("barnbarn", "ILuvM4th!","John","Doe","john@doe.com","owner","USA", users);
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Live long and prosper", "fake date",u3));
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","The enemy of my enemy is the enemy I kill last", "fake date",u3));
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Beam me up", "fake date",u3));
+        u3.getStories().add(new Story("fake title barnbarn", "Bolivia", "fakeish description","Live long and prosper", "fake date",u3));
+        u3.getStories().add(new Story("fake title2 barnbarn", "Bolivia", "fakeish description","The enemy of my enemy is the enemy I kill last", "fake date",u3));
+        u3.getStories().add(new Story("fake title3 barnbarn", "Bolivia", "fakeish description","Beam me up", "fake date",u3));
         userService.save(u3);
 
         users = new ArrayList<>();

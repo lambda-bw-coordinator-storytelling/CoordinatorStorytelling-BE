@@ -98,12 +98,16 @@ public class StoriesController
 
 
     @PostMapping(value = "/story")
-    public ResponseEntity<?> addNewQuote(HttpServletRequest request, @Valid
+    public ResponseEntity<?> addNewStory(HttpServletRequest request, @Valid
     @RequestBody
             Story newStory) throws URISyntaxException
     {
         logger.trace(request.getRequestURI() + " accessed");
-
+        if(newStory.getUser() == null){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            newStory.setUser(userrepo.findByUsername(username));
+        }
         newStory = storyService.save(newStory);
 
         // set the location header for the newly created resource
@@ -112,6 +116,10 @@ public class StoriesController
         responseHeaders.setLocation(newQuoteURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+    @PutMapping(value = "/story/update/{storyid}",produces = {"application/json"},consumes = {"application/json"})
+    public ResponseEntity<?> updatestory(@PathVariable long storyid, @RequestBody Story story){
+        return new ResponseEntity<>(storyService.update(story, storyid), HttpStatus.OK);
     }
 
 
