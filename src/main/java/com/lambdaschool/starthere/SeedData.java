@@ -40,7 +40,9 @@ public class SeedData implements CommandLineRunner
         admins.add(new UserRoles(new User(), r1));
         admins.add(new UserRoles(new User(), r2));
         admins.add(new UserRoles(new User(), r3));
-        User u1 = new User("admin", "password", admins);
+//            public User(String username, String password,String firstname,String lastname,String email,String title,String country, List<UserRoles> userRoles)
+
+        User u1 = new User("admin", "password","John","Doe","john@doe.com","owner","USA", admins);
 //            public Story(String title, String country, String description, String content, String date, User user) {
 
         u1.getStories().add(new Story("fake title", "Bolivia", "fakeish description","A creative man is motivated by the desire to achieve, not by the desire to beat others", "fake date",u1));
@@ -51,26 +53,26 @@ public class SeedData implements CommandLineRunner
         ArrayList<UserRoles> datas = new ArrayList<>();
         datas.add(new UserRoles(new User(), r3));
         datas.add(new UserRoles(new User(), r2));
-        User u2 = new User("cinnamon", "1234567", datas);
+        User u2 = new User("cinnamon", "1234567","John","Doe","john@doe.com","owner","USA", datas);
         userService.save(u2);
 
         // user
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u3 = new User("barnbarn", "ILuvM4th!", users);
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Live long and prosper", "fake date",u3));
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","The enemy of my enemy is the enemy I kill last", "fake date",u3));
-        u3.getStories().add(new Story("fake title", "Bolivia", "fakeish description","Beam me up", "fake date",u3));
+        User u3 = new User("barnbarn", "ILuvM4th!","John","Doe","john@doe.com","owner","USA", users);
+        u3.getStories().add(new Story("fake title barnbarn", "Bolivia", "fakeish description","Live long and prosper", "fake date",u3));
+        u3.getStories().add(new Story("fake title2 barnbarn", "Bolivia", "fakeish description","The enemy of my enemy is the enemy I kill last", "fake date",u3));
+        u3.getStories().add(new Story("fake title3 barnbarn", "Bolivia", "fakeish description","Beam me up", "fake date",u3));
         userService.save(u3);
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u4 = new User("Bob", "password", users);
+        User u4 = new User("Bob", "password","John","Doe","john@doe.com","owner","USA", users);
         userService.save(u4);
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u5 = new User("Jane", "password", users);
+        User u5 = new User("Jane", "password","John","Doe","john@doe.com","owner","USA", users);
         userService.save(u5);
     }
 }

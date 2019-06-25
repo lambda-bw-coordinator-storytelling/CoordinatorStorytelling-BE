@@ -24,6 +24,24 @@ public class User extends Auditable
     private String username;
 
     @Column(nullable = false)
+    private String firstname;
+
+    @Column(nullable = false)
+    private String lastname;
+
+    @Column(nullable = false)
+    private String country;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String title;
+
+
+
+
+    @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -42,10 +60,16 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password, List<UserRoles> userRoles)
+    public User(String username, String password,String firstname,String lastname,String email,String title,String country, List<UserRoles> userRoles)
     {
+        setFirstname(firstname);
+        setLastname(lastname);
+        setEmail(email);
+        setTitle(title);
+        setCountry(country);
         setUsername(username);
         setPassword(password);
+
         for (UserRoles ur : userRoles)
         {
             ur.setUser(this);
@@ -58,10 +82,6 @@ public class User extends Auditable
         return userid;
     }
 
-    public void setUserid(long userid)
-    {
-        this.userid = userid;
-    }
 
     public String getUsername()
     {
@@ -120,5 +140,45 @@ public class User extends Auditable
         }
 
         return rtnList;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

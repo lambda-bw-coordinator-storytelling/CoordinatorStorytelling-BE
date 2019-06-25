@@ -71,6 +71,13 @@ public class UserServiceImpl implements UserDetailsService, UserService
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPasswordNoEncrypt(user.getPassword());
+        newUser.setCountry(user.getCountry());
+        newUser.setFirstname(user.getFirstname());
+        newUser.setLastname(user.getLastname());
+        newUser.setEmail(user.getEmail());
+        newUser.setTitle(user.getTitle());
+
+
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         for (UserRoles ur : user.getUserRoles())
@@ -83,7 +90,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
 //            public Story(String title, String country, String description, String content, String date, User user) {
 
         {
-            newUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(), newUser));
+            newUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),newUser));
         }
 
         return userrepos.save(newUser);
@@ -110,6 +117,21 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 {
                     currentUser.setPasswordNoEncrypt(user.getPassword());
                 }
+                if (user.getFirstname() !=null){
+                    currentUser.setFirstname(user.getFirstname());
+                }
+                if (user.getLastname() !=null){
+                    currentUser.setLastname(user.getLastname());
+                }
+                if (user.getEmail() !=null){
+                    currentUser.setEmail(user.getEmail());
+                }
+                if (user.getTitle() !=null){
+                    currentUser.setTitle(user.getTitle());
+                }
+                if (user.getCountry() !=null){
+                    currentUser.setCountry(user.getCountry());
+                }
 
                 if (user.getUserRoles().size() > 0)
                 {
@@ -129,7 +151,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 {
                     for (Story q : user.getStories())
                     {
-                        currentUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(), currentUser));
+                        currentUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),currentUser));
                     }
                 }
 
@@ -143,5 +165,10 @@ public class UserServiceImpl implements UserDetailsService, UserService
             throw new ResourceNotFoundException(authentication.getName());
         }
 
+    }
+
+    @Override
+    public User findByUserName(String username) {
+        return userrepos.findByUsername(username);
     }
 }

@@ -15,4 +15,8 @@ public interface StoryService
     void delete(long id);
 
     Story save(Story story);
+
+    Story update(Story story, Long id);
+
+
 }
