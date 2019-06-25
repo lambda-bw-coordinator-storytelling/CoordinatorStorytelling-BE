@@ -64,7 +64,7 @@ public class StoryServiceImpl implements StoryService
         List<Story> list = new ArrayList<>();
         storyRepository.findAll().iterator().forEachRemaining(list::add);
 
-        list.removeIf(q -> !q.getTitle().equalsIgnoreCase(username));
+        list.removeIf(q -> !q.getUser().getUsername().equalsIgnoreCase(username));
         return list;
     }
     @Transactional
@@ -90,8 +90,11 @@ public class StoryServiceImpl implements StoryService
         if (story.getUser() != null){
             currentStory.setUser(story.getUser());
         }
+        if(story.getUrl() != null){
+            currentStory.setUrl(story.getUrl());
+        }
 
-        return storyRepository.save(story);
+        return storyRepository.save(currentStory);
     }
 
 

@@ -132,6 +132,10 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 if (user.getCountry() !=null){
                     currentUser.setCountry(user.getCountry());
                 }
+                if (user.getUrl() !=null){
+                    currentUser.setUrl(user.getUrl());
+                }
+
 
                 if (user.getUserRoles().size() > 0)
                 {

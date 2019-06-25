@@ -38,6 +38,9 @@ public class User extends Auditable
     @Column(nullable = false)
     private String title;
 
+    @Column()
+    private String url;
+
 
 
 
@@ -180,5 +183,13 @@ public class User extends Auditable
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
