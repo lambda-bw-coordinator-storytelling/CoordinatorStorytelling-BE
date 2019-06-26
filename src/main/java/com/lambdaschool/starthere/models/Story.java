@@ -12,42 +12,28 @@ import javax.persistence.*;
 @Table(name = "stories")
 public class Story extends Auditable
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long storiesid;
-
     @Column(nullable = false)
     private String title;
-
-
     @Column(nullable = false)
     private String country;
-
     @Column(nullable = false)
     private String description;
-
     @Column(nullable = false,columnDefinition = "varchar(10000)")
     private String content;
-
     @Column(nullable = false)
     private String date;
-
     @Column()
     private String url;
-
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid",
                 nullable = false)
-//    @JsonIgnoreProperties({"stories", "hibernateLazyInitializer", "user", "userRoles", "authority"})
     @JsonIgnore
     private User user;
 
-    public Story()
-    {
-    }
+    public Story(){}
 
     public Story(String title, String country, String description, String content, String date, User user) {
         this.title = title;
@@ -57,16 +43,13 @@ public class Story extends Auditable
         this.date = date;
         this.user = user;
     }
-
     public Story(String title, String country, String description, String content, String date) {
         this.title = title;
         this.country = country;
         this.description = description;
         this.content = content;
         this.date = date;
-
     }
-
     public Story(String title, String country, String description, String content, String date, String url, User user) {
         this.title = title;
         this.country = country;
@@ -76,11 +59,9 @@ public class Story extends Auditable
         this.url = url;
         this.user = user;
     }
-
     public long getStoriesid() {
         return storiesid;
     }
-
 
     public String getTitle() {
         return title;

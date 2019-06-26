@@ -47,7 +47,6 @@ public class OpenController
 
         newuser = userService.save(newuser);
 
-        // set the location header for the newly created resource - to another controller!
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newRestaurantURI = ServletUriComponentsBuilder.fromUriString(request.getServerName() + ":" + request.getLocalPort() + "/users/user/{userId}").buildAndExpand(newuser.getUserid()).toUri();
         responseHeaders.setLocation(newRestaurantURI);

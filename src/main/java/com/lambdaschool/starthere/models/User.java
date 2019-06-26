@@ -18,41 +18,28 @@ public class User extends Auditable
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userid;
-
     @Column(nullable = false,
             unique = true)
     private String username;
-
     @Column(nullable = false)
     private String firstname;
-
     @Column(nullable = false)
     private String lastname;
-
     @Column(nullable = false)
     private String country;
-
     @Column(nullable = false)
     private String email;
-
     @Column(nullable = false)
     private String title;
-
     @Column()
     private String url;
-
-
-
-
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
-
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
@@ -84,7 +71,6 @@ public class User extends Auditable
     {
         return userid;
     }
-
 
     public String getUsername()
     {
@@ -141,7 +127,6 @@ public class User extends Auditable
             String myRole = "ROLE_" + r.getRole().getName().toUpperCase();
             rtnList.add(new SimpleGrantedAuthority(myRole));
         }
-
         return rtnList;
     }
 
@@ -188,7 +173,6 @@ public class User extends Auditable
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }

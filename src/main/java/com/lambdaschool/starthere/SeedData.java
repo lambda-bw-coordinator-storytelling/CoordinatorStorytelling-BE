@@ -19,53 +19,31 @@ public class SeedData implements CommandLineRunner
 {
     @Autowired
     RoleService roleService;
-
     @Autowired
     UserService userService;
-
 
     @Override
     public void run(String[] args) throws Exception
     {
         Role r1 = new Role("admin");
         Role r2 = new Role("user");
-//        Role r3 = new Role("data");
-
         roleService.save(r1);
         roleService.save(r2);
-//        roleService.save(r3);
-
-        //stories
-
-
-
-
-
-
-
-
-        // admin, data, user
         ArrayList<UserRoles> admins = new ArrayList<>();
         admins.add(new UserRoles(new User(), r1));
         admins.add(new UserRoles(new User(), r2));
-//        admins.add(new UserRoles(new User(), r3));
-//            public User(String username, String password,String firstname,String lastname,String email,String title,String country, List<UserRoles> userRoles)
 
         User u1 = new User("admin", "password","John","Doe","john@doe.com","owner","USA", admins);
-//            public Story(String title, String country, String description, String content, String date, User user) {
 
         u1.getStories().add(new Story("fake title", "Bolivia", "fakeish description","A creative man is motivated by the desire to achieve, not by the desire to beat others", "fake date",u1));
         u1.getStories().add(new Story("fake title", "Bolivia", "fakeish description","The question isn't who is going to let me; it's who is going to stop me.", "fake date",u1));
         userService.save(u1);
 
-        // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();
-//        datas.add(new UserRoles(new User(), r3));
         datas.add(new UserRoles(new User(), r2));
         User u2 = new User("cinnamon", "1234567","John","Doe","john@doe.com","owner","USA", datas);
         userService.save(u2);
 
-        // user
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
         User u3 = new User("user", "password","John","Doe","john@doe.com","owner","USA", users);
@@ -92,7 +70,4 @@ public class SeedData implements CommandLineRunner
             "Mina is unaware that her family has thrown her a surprise party at the resort and plan on sharing with her the good news that she got accepted to a university in Germany. As the sun sets over the resort, the party begins as the Rakoto family enter the outside pavilion in style. The guests are ushered in as dinner is begun to be served. Families and guests congratulate Mina on her achievements and wish her good luck. \n" +
             "\n" +
             "As the festivities continue, Mina takes a stroll along the beach to reflect on her past and dream of her future. Her parents catch up with her and hand her a big glossy envelope. Mina sees the name of her dream university on the envelope and quickly opens the letter. She closes her eyes and takes a deep breath, trying to calm her racing heart. She opens her eyes and sees the word “congratulations” written in big bold letters. She jumps up and down and hugs her parents as yells loudly that she is accepted. Fireworks begin to paint the skies and families and friends gather to celebrate the graduate on her future big wins. \n";
-
-
-
 }
