@@ -24,10 +24,8 @@ import java.util.List;
 public class UserController
 {
     private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
-
     @Autowired
     private UserService userService;
-
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/users",
                 produces = {"application/json"})
@@ -38,8 +36,6 @@ public class UserController
         List<User> myUsers = userService.findAll();
         return new ResponseEntity<>(myUsers, HttpStatus.OK);
     }
-
-
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/{userId}",
                 produces = {"application/json"})
@@ -52,7 +48,6 @@ public class UserController
         User u = userService.findUserById(userId);
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
-
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(value = "/getusername",
                 produces = {"application/json"})
@@ -63,9 +58,6 @@ public class UserController
 
         return new ResponseEntity<>(authentication.getPrincipal(), HttpStatus.OK);
     }
-
-
-
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(HttpServletRequest request,
                                         @RequestBody
@@ -78,8 +70,6 @@ public class UserController
         userService.update(updateUser, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUserById(HttpServletRequest request,

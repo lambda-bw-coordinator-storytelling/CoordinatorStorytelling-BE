@@ -15,17 +15,13 @@ public class UserRoles extends Auditable implements Serializable
     @JoinColumn(name = "userid")
     @JsonIgnoreProperties("userRoles")
     private User user;
-
     @Id
     @ManyToOne
     @JoinColumn(name = "roleid")
     @JsonIgnoreProperties("userRoles")
     private Role role;
 
-    public UserRoles()
-    {
-    }
-
+    public UserRoles(){}
     public UserRoles(User user, Role role)
     {
         this.user = user;

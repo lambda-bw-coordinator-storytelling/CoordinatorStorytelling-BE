@@ -34,8 +34,6 @@ public class RolesController
         List<Role> allRoles = roleService.findAll();
         return new ResponseEntity<>(allRoles, HttpStatus.OK);
     }
-
-
     @GetMapping(value = "/role/{roleId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getRole(HttpServletRequest request,
@@ -47,8 +45,6 @@ public class RolesController
         Role r = roleService.findRoleById(roleId);
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
-
-
     @PostMapping(value = "/role")
     public ResponseEntity<?> addNewRole(HttpServletRequest request, @Valid
     @RequestBody
@@ -58,19 +54,12 @@ public class RolesController
 
         newRole = roleService.save(newRole);
 
-        // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newRoleURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{roleid}").buildAndExpand(newRole.getRoleid()).toUri();
         responseHeaders.setLocation(newRoleURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
-
-
-//    @PostMapping(value = "/user/{userid}/role/{roleid}")
-
-
-
     @DeleteMapping("/role/{id}")
     public ResponseEntity<?> deleteRoleById(HttpServletRequest request,
                                             @PathVariable

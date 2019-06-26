@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 
-// adapted from https://tools.ietf.org/html/rfc7807
 public class ErrorDetail
 {
     private String title;
@@ -19,17 +18,14 @@ public class ErrorDetail
     private String timestamp;
     private String developerMessage;
     private Map<String, List<ValidationError>> errors = new HashMap<String, List<ValidationError>>();
-
     public String getTitle()
     {
         return title;
     }
-
     public void setTitle(String title)
     {
         this.title = title;
     }
-
     public int getStatus()
     {
         return status;

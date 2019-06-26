@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +21,8 @@ import java.util.List;
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService
 {
-
     @Autowired
     private UserRepository userrepos;
-
     @Autowired
     private RoleRepository rolerepos;
 
@@ -77,8 +74,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
         newUser.setEmail(user.getEmail());
         newUser.setTitle(user.getTitle());
 
-
-
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         for (UserRoles ur : user.getUserRoles())
         {
@@ -87,16 +82,12 @@ public class UserServiceImpl implements UserDetailsService, UserService
         newUser.setUserRoles(newRoles);
 
         for (Story q : user.getStories())
-//            public Story(String title, String country, String description, String content, String date, User user) {
-
         {
             newUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),newUser));
         }
 
         return userrepos.save(newUser);
     }
-
-
     @Transactional
     @Override
     public User update(User user, long id)
@@ -112,7 +103,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 {
                     currentUser.setUsername(user.getUsername());
                 }
-
                 if (user.getPassword() != null)
                 {
                     currentUser.setPasswordNoEncrypt(user.getPassword());
@@ -135,22 +125,14 @@ public class UserServiceImpl implements UserDetailsService, UserService
                 if (user.getUrl() !=null){
                     currentUser.setUrl(user.getUrl());
                 }
-
-
                 if (user.getUserRoles().size() > 0)
                 {
-                    // with so many relationships happening, I decided to go
-                    // with old school queries
-                    // delete the old ones
                     rolerepos.deleteUserRolesByUserId(currentUser.getUserid());
-
-                    // add the new ones
                     for (UserRoles ur : user.getUserRoles())
                     {
                         rolerepos.insertUserRoles(id, ur.getRole().getRoleid());
                     }
                 }
-
                 if (user.getStories().size() > 0)
                 {
                     for (Story q : user.getStories())
@@ -158,7 +140,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
                         currentUser.getStories().add(new Story(q.getTitle(),q.getCountry(),q.getDescription(),q.getContent(),q.getDate(),currentUser));
                     }
                 }
-
                 return userrepos.save(currentUser);
             } else
             {
@@ -168,9 +149,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
         {
             throw new ResourceNotFoundException(authentication.getName());
         }
-
     }
-
     @Override
     public User findByUserName(String username) {
         return userrepos.findByUsername(username);
