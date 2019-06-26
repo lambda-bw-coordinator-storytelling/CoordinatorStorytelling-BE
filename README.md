@@ -64,7 +64,7 @@ the username HAS to be unique and it has to have the rest of the information in 
  
  ##PUT endpoint :
  
-     /stories/story/7 - Updates a current story with any new information
+     /stories/story/update/7 - Updates a current story with any new information
  
  the Json doesnt have to be a full copy of the story as long as it has whats being updated labeled:
  
